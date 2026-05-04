@@ -5,6 +5,7 @@
 
 ## Skills
 - "ship" → ship skill
+- "sync plan" → sync-plan skill
 - "review" → review-plus-fix skill
 - "take over" → take-over skill
 - "spec" → spec skill
@@ -14,7 +15,16 @@
 
 ## Plan Tracking
 
-Plans live at `PLAN.md` in the project root.
+Plans live in the `plans/` directory in the project root.
+
+Use one plan file per independent effort. Multiple plan files may exist at the same time for parallel work.
+
+Plan filenames must be descriptive and stable:
+`plans/N-short-task-name.md`
+
+Use the next sequential number based on existing plan files in `plans/`. For example, if `plans/` already contains `1-add-auth.md` and `2-refactor-billing.md`, create the next plan as `3-short-task-name.md`.
+
+Before creating a new plan, check `plans/` for an existing related plan. If one exists, update it instead of creating a duplicate.
 
 Every plan file must include:
 
@@ -29,8 +39,18 @@ Every plan file must include:
 
 Tasks must be sequential and self-contained.
 
+Different plan files may be implemented in parallel only if their file ownership does not overlap. If two plans touch the same files or APIs, merge them or explicitly document the dependency.
+
 After completing each task, run `/compact` before starting the next task.
 
+When all tasks in a plan are complete:
+1. Delete the plan file.
+2. Stage the deleted plan file.
+3. Commit with the exact message `sync plans`.
+4. Push the commit.
+
 ## Python Projects
+
+These are global defaults. Project-level AGENTS.md instructions override this section.
 
 When working in Python projects that use `uv`, always use `uv run` directly — never prepend `PYTHONPATH=src`. If the project has a `pyproject.toml` with `[tool.setuptools.packages.find]`, install in editable mode via `uv pip install -e .`.
