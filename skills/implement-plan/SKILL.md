@@ -16,6 +16,9 @@ Before changing implementation files:
 3. Commit with the exact message `sync plans`.
 4. Push.
 
+Create and use an implementation branch named `plan/XX-short-task-name`, matching the plan filename without `.md`.
+Do not use git worktrees unless the user explicitly asks for them.
+
 Then implement the plan task by task.
 After each task, update the task checkbox, run its Verify step, and run `/compact`.
 When all tasks are complete, delete the plan file, commit the deletion with the exact message `sync plans`, and push.

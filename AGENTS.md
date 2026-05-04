@@ -47,6 +47,8 @@ Different plan files may be implemented in parallel only if their file ownership
 
 Before implementing a plan, run `git pull --ff-only`, inspect `plans/`, and select the highest-numbered unclaimed plan unless the user specifies a plan number. Mark the selected plan as `claimed`, stage only that plan file, commit the claim with the exact message `sync plans`, and push it before changing implementation files.
 
+Implement each plan on a branch named `plan/XX-short-task-name`, matching the plan filename without `.md`. Do not use git worktrees unless the user explicitly asks for them.
+
 After completing each task, run `/compact` before starting the next task.
 
 When all tasks in a plan are complete:
