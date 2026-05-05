@@ -16,46 +16,35 @@
 
 ## Plan Tracking
 
-Plans live in the `plans/` directory in the project root.
+Plans live in `plans/`.
 
-Use one plan file per independent effort. Multiple plan files may exist at the same time for parallel work.
+Use one file per independent effort: `plans/XX-short-task-name.md`.
+Use the next two-digit number from existing plans, e.g. `01-add-auth.md`, then `02-refactor-billing.md`.
 
-Plan filenames must be descriptive and stable:
-`plans/XX-short-task-name.md`
+Before creating a plan, check `plans/` for an existing related plan and update it instead of duplicating it.
 
-Use the next sequential two-digit number based on existing plan files in `plans/`. For example, if `plans/` already contains `01-add-auth.md` and `02-refactor-billing.md`, create the next plan as `03-short-task-name.md`.
-
-Before creating a new plan, check `plans/` for an existing related plan. If one exists, update it instead of creating a duplicate.
+Claude Code Plan Mode UI/sidebar plans are drafts. When the user approves or asks to save one, write it to `plans/XX-short-task-name.md`, commit only that plan file with `sync plans`, and push. Do not implement unless explicitly asked.
 
 Every plan file must include:
-
-1. A `## Status` section:
+1. `## Status`
    - `unclaimed` or `claimed`
-
-2. A `## Task Tracker` section with one checkbox per task:
+2. `## Task Tracker`
    - [ ] Task 1: <one-line description>
-
-3. A detail section for each task containing:
-   - The exact files to create or modify (with line numbers where relevant)
-   - The specific code to write — function signatures, class names, field names, exact values
-   - How it connects to existing code (which functions to call, which patterns to follow)
+3. A detail section for each task:
+   - Files to create or modify
+   - Specific code changes
+   - Existing code connections
    - A concrete **Verify:** step (a command to run or behavior to check)
 
-Tasks must be sequential and self-contained.
+Tasks must be sequential and self-contained. Parallel plans must not touch the same files or APIs unless their dependency is documented.
 
-Different plan files may be implemented in parallel only if their file ownership does not overlap. If two plans touch the same files or APIs, merge them or explicitly document the dependency.
+Before implementing, run `git pull --ff-only`, select the specified plan or highest-numbered `unclaimed` plan, mark it `claimed`, commit only that plan file with `sync plans`, and push.
 
-Before implementing a plan, run `git pull --ff-only`, inspect `plans/`, and select the highest-numbered unclaimed plan unless the user specifies a plan number. Mark the selected plan as `claimed`, stage only that plan file, commit the claim with the exact message `sync plans`, and push it before changing implementation files.
+Implement on branch `plan/XX-short-task-name` matching the plan filename without `.md`. Do not use worktrees unless explicitly asked.
 
-Implement each plan on a branch named `plan/XX-short-task-name`, matching the plan filename without `.md`. Do not use git worktrees unless the user explicitly asks for them.
+After each task, update the checkbox, run its Verify step, then run `/compact`.
 
-After completing each task, run `/compact` before starting the next task.
-
-When all tasks in a plan are complete:
-1. Delete the plan file.
-2. Stage the deleted plan file.
-3. Commit with the exact message `sync plans`.
-4. Push the commit.
+When all tasks are complete, delete the plan file, commit only that deletion with `sync plans`, and push.
 
 ## Python Projects
 
