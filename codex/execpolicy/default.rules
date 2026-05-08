@@ -1,0 +1,59 @@
+prefix_rule(
+    pattern = ["git", "reset", "--hard"],
+    decision = "forbidden",
+    justification = "Destructive git reset should require explicit user intent",
+)
+
+prefix_rule(
+    pattern = ["git", "clean"],
+    decision = "forbidden",
+    justification = "Destructive workspace cleanup should require explicit user intent",
+)
+
+prefix_rule(
+    pattern = ["git", "push", "--force"],
+    decision = "forbidden",
+    justification = "Force pushes are destructive",
+)
+
+prefix_rule(
+    pattern = ["git", "push", "-f"],
+    decision = "forbidden",
+    justification = "Force pushes are destructive",
+)
+
+prefix_rule(
+    pattern = ["rm", "-rf"],
+    decision = "forbidden",
+    justification = "Recursive deletion is destructive",
+)
+
+prefix_rule(
+    pattern = ["git", ["status", "diff", "log", "show", "branch", "rev-parse", "ls-files", "remote", "fetch", "pull", "add", "commit", "push"]],
+    decision = "allow",
+    justification = "Routine git workflow commands are trusted",
+)
+
+prefix_rule(
+    pattern = ["git", "checkout", "-b"],
+    decision = "allow",
+    justification = "Creating implementation branches is trusted",
+)
+
+prefix_rule(
+    pattern = ["git", "switch", "-c"],
+    decision = "allow",
+    justification = "Creating implementation branches is trusted",
+)
+
+prefix_rule(
+    pattern = [["rg", "grep", "ls", "cat", "sed", "awk", "head", "tail", "wc", "stat", "du", "pwd", "nl", "diff", "which", "command"]],
+    decision = "allow",
+    justification = "Read-only exploration commands are trusted",
+)
+
+prefix_rule(
+    pattern = ["find", ".", "-type", "f", "-print"],
+    decision = "allow",
+    justification = "Common read-only file discovery is trusted",
+)
