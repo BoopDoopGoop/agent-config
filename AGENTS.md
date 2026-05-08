@@ -41,7 +41,7 @@ Before implementing, run `git pull --ff-only`, select the specified plan or high
 
 Implement on branch `plan/XX-short-task-name` matching the plan filename without `.md`. Do not use worktrees unless explicitly asked.
 
-After each task, update the checkbox, run its Verify step, then run `/compact`.
+After each task, update the checkbox, run its Verify step, then run `/clear` (or `/compact` if `/clear` is not available).
 
 When all tasks are complete, delete the plan file, commit only that deletion with `sync plans`, and push.
 

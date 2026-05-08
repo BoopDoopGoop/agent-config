@@ -15,9 +15,5 @@
     "enabled": true
   },
   "effortLevel": "medium",
-  "skipDangerousModePermissionPrompt": true,
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  }
+  "skipDangerousModePermissionPrompt": true
 }
