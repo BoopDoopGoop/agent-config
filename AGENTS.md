@@ -12,7 +12,6 @@
 - "spec" → spec skill
 - "debug" → debug skill
 - "reflect" → reflect-agents-md skill
-- "bootstrap" → bootstrap-agents-md skill
 
 ## Plan Tracking
 

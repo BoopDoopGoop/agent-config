@@ -28,12 +28,6 @@ cp "$AGENT_CONFIG/codex/config.toml" "$HOME/.codex/config.toml"
 ln -sf "$AGENT_CONFIG/codex/execpolicy/default.rules" "$HOME/.codex/execpolicy/default.rules"
 echo "✓ Codex"
 
-# ── Gemini CLI ───────────────────────────────────────────
-# Gemini reads ~/.gemini/GEMINI.md; supports @file imports
-mkdir -p "$HOME/.gemini"
-printf '%s\n' "@$AGENT_CONFIG/AGENTS.md" > "$HOME/.gemini/GEMINI.md"
-echo "✓ Gemini CLI"
-
 # ── Verification ─────────────────────────────────────────
 test -f "$AGENT_CONFIG/AGENTS.md"
 test "$(realpath "$HOME/.codex/AGENTS.md")" = "$(realpath "$AGENT_CONFIG/AGENTS.md")"
@@ -49,5 +43,4 @@ echo "Done. All agents now share $AGENT_CONFIG/AGENTS.md and $AGENT_CONFIG/skill
 echo ""
 echo "Next steps:"
 echo "  1. Review $AGENT_CONFIG/AGENTS.md and fill in your personal conventions"
-echo "  2. Install Gemini CLI if not already: npm install -g @google/gemini-cli && gemini auth"
-echo "  3. Open a new project and run the 'bootstrap' skill to generate a project-level AGENTS.md"
+echo "  2. Open a new project and run the 'bootstrap' skill to generate a project-level AGENTS.md"

@@ -1,18 +1,16 @@
 ---
 name: bootstrap-agents-md
-description: Read the project and generate a project-level AGENTS.md via Gemini CLI
+description: Read the project and generate a project-level AGENTS.md
 ---
 
-DO NOT write AGENTS.md yourself. You must use the gemini CLI to generate it.
+Read the project yourself — do not delegate to an external CLI.
 
-Run the following bash command from the project root. Collect the key files first, then embed their contents into the prompt:
+Steps:
+1. Run `ls -R . | head -80` to get the folder structure.
+2. Read `pyproject.toml` or `package.json` (whichever exists), `README.md`, and a sample of source files to understand commands and code style.
+3. Write `AGENTS.md` using the structure below. Keep the whole file under 150 lines. Instructions only, no explanations.
 
-```bash
-gemini -p "$(cat <<'PROMPT'
-Read this codebase and produce an AGENTS.md with the structure below.
-Read actual files to determine commands and style patterns — do not guess.
-Keep the whole file under 150 lines. Instructions only, no explanations.
-
+```
 ## About
 (2-3 sentences: what this project is, what it does, who uses it)
 
@@ -42,32 +40,11 @@ e.g. "always curly braces", "fetch not axios", "named exports only",
 
 ## Environment
 (leave as placeholder — user fills in tmux layout, auto-reload behavior etc.)
-
----
-
-Here are the project files:
-
-FOLDER STRUCTURE:
-$(ls -R . | head -80)
-
-PACKAGE/PROJECT FILE:
-$(cat pyproject.toml 2>/dev/null || cat package.json 2>/dev/null || echo "not found")
-
-README:
-$(cat README.md 2>/dev/null || echo "not found")
-
-PROMPT
-)" > AGENTS.md
 ```
 
-After the command runs:
-- Read the generated AGENTS.md
-- Flag anything that looks wrong, hallucinated, or missing
-- Show the user the full file before finishing
-
-Then create two pointer files so all agents load AGENTS.md:
+4. After writing, read the file back, flag anything that looks wrong or hallucinated, and show the user the full file.
+5. Create a pointer so Claude Code loads AGENTS.md:
 
 ```bash
 echo "@AGENTS.md" > CLAUDE.md
-echo "@AGENTS.md" > GEMINI.md
 ```
