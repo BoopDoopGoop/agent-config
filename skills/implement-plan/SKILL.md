@@ -9,3 +9,11 @@ Follow AGENTS.md Plan Tracking exactly.
 If no plan number is specified, select the highest-numbered `unclaimed` plan.
 Do not implement `claimed` plans unless explicitly told to take one over.
 Use branch `plan/XX-short-task-name`; do not use worktrees unless explicitly asked.
+
+After completing each task:
+1. Check off the task in the plan file.
+2. Run its Verify step.
+3. Run `/compact`.
+4. Then continue to the next task.
+
+Do not stop between tasks unless a Verify step fails.
