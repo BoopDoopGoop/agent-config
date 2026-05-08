@@ -1,4 +1,5 @@
 approval_policy = "never"
+commit_attribution = ""
 approvals_reviewer = "auto_review"
 sandbox_mode = "workspace-write"
 
