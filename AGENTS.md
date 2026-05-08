@@ -12,6 +12,7 @@
 - "spec" → spec skill
 - "debug" → debug skill
 - "reflect" → reflect-agents-md skill
+- "pr and merge" → pr-and-merge skill
 
 ## Plan Tracking
 
