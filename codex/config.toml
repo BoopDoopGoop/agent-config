@@ -1,4 +1,4 @@
-approval_policy = "never"
+approval_policy = { granular = { sandbox_approval = true, rules = false, mcp_elicitations = false, request_permissions = false, skill_approval = false } }
 commit_attribution = ""
 approvals_reviewer = "auto_review"
 sandbox_mode = "workspace-write"

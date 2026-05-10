@@ -15,5 +15,15 @@
     "enabled": true
   },
   "effortLevel": "medium",
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "autoCompactEnabled": true,
+  "statusLine": {
+    "enabled": true,
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  }
 }

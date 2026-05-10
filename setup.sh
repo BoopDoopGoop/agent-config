@@ -14,6 +14,7 @@ mkdir -p "$HOME/.claude"
 printf '%s\n' "@$AGENT_CONFIG/AGENTS.md" > "$HOME/.claude/CLAUDE.md"
 ln -sfn "$AGENT_CONFIG/skills" "$HOME/.claude/skills"
 ln -sf "$AGENT_CONFIG/claude-code/settings.json" "$HOME/.claude/settings.json"
+ln -sf "$AGENT_CONFIG/claude-code/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 echo "✓ Claude Code"
 
 # ── Codex ────────────────────────────────────────────────
@@ -35,6 +36,7 @@ grep -Fx "@$AGENT_CONFIG/AGENTS.md" "$HOME/.claude/CLAUDE.md" >/dev/null
 test "$(realpath "$HOME/.codex/skills")" = "$(realpath "$AGENT_CONFIG/skills")"
 test "$(realpath "$HOME/.claude/skills")" = "$(realpath "$AGENT_CONFIG/skills")"
 test "$(realpath "$HOME/.claude/settings.json")" = "$(realpath "$AGENT_CONFIG/claude-code/settings.json")"
+test "$(realpath "$HOME/.claude/statusline-command.sh")" = "$(realpath "$AGENT_CONFIG/claude-code/statusline-command.sh")"
 cmp -s "$HOME/.codex/config.toml" "$AGENT_CONFIG/codex/config.toml"
 test "$(realpath "$HOME/.codex/execpolicy/default.rules")" = "$(realpath "$AGENT_CONFIG/codex/execpolicy/default.rules")"
 
