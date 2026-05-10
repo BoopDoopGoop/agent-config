@@ -1,53 +1,64 @@
 # Global Agent Rules
 
-## Critical Rules
-(leave empty — fill in reactively as agents make mistakes)
+## Work Style
+- Minimize tokens without losing necessary precision.
+- Prefer short bullets for structured output.
+- Avoid Markdown tables unless explicitly requested.
+- Keep config and skill edits terse, accurate, and non-redundant.
+
+## Working Principles
+- Simplicity first: make the change as simple as possible.
+- Root cause over patches: no temporary fixes unless requested.
+- Minimal impact: touch only what the clean solution requires.
+- Preserve user work: never revert unrelated or unexpected changes; assume they came from the user or another agent.
+- Repo-native tools: use the project's package manager, runtime, docs, and established patterns.
+- Bug fixes: add a regression test when it fits.
+- New dependencies: do a quick health check for maintenance, releases, and adoption.
+- Closed-loop debugging: reproduce or examine the failure, hypothesize, fix, verify, repeat until working or genuinely blocked.
+- Verification before done: prove behavior with the most relevant check.
+- Stop and re-plan when the current path gets messy.
+
+## Demand Elegance
+- For non-trivial work, pause before finalizing and ask whether there is a simpler, cleaner design.
+- Choose the elegant solution when it improves maintainability, removes duplication, clarifies architecture, or better follows local patterns.
+- Broad refactors are allowed when they are the cleanest path; do not artificially minimize scope if that preserves a worse design.
+- Do not broaden scope for taste alone. State why the larger change is cleaner and what risk it adds.
+- If a fix feels hacky, rework it from what is now known instead of polishing the hack.
+- Challenge the solution before presenting it: would a strong engineer accept this shape?
+- Scale verification to the refactor size.
+
+## Planning
+- Default to lightweight chat planning.
+- Plan first for non-trivial work: 3+ meaningful steps, multi-file changes, unfamiliar code, architectural choices, or unclear verification.
+- Skip plan ceremony for obvious one-step fixes.
+- For non-trivial plans, define the verification strategy during planning, not after implementation.
+- Create plan files only when the user approves a plan or asks for handoff.
+- Save approved plans in `plans/`.
+- Plan filenames use a two-digit sequence plus slug: `NN-slug.md`, for example `01-auth.md`. Use the next unused number.
+- `plans/` is an active implementation queue, not an archive.
+- Before creating a plan, check `plans/` for a related plan and update it instead of duplicating it.
+- When implementing, use the named plan, or the highest-numbered plan if none is named.
+- If multiple agents are running, the user names which plan each agent implements.
+- Delete the plan file when all tasks pass verification.
+- No status field, active tracker, branch, commit, push, sync, pull, or archive step is implied.
+
+## Saved Plan Format
+- Use structured handoff plans:
+  - `## Goal`: one short paragraph.
+  - `## Tasks`: one unified top checklist.
+  - Task IDs: `T1`, `T2`, etc.; note dependencies inline.
+  - One section per task with `Files`, `Changes`, `Connections`, `Depends`, and `Verify`.
+  - Add `## Final Check` only for multi-task, cross-cutting, UI, integration, or refactor work.
+- Verification is task-focused proof, not a separate skill.
 
 ## Skills
-- "ship" → ship skill
-- "sync plan" → sync-plan skill
-- "implement" → implement-plan skill
-- "review" → review-plus-fix skill
-- "take over" → take-over skill
-- "spec" → spec skill
-- "debug" → debug skill
-- "reflect" → reflect-agents-md skill
-- "pr and merge" → pr-and-merge skill
+- `"handoff" -> handoff skill`
+- `"implement" -> implement skill`
+- `"debug" -> debug skill`
+- `"ship" -> ship skill`
+- `"retro" -> retro skill`
 
-## Plan Tracking
-
-Plans live in `plans/`.
-
-Use one file per independent effort: `plans/XX-short-task-name.md`.
-Use the next two-digit number from existing plans, e.g. `01-add-auth.md`, then `02-refactor-billing.md`.
-
-Before creating a plan, check `plans/` for an existing related plan and update it instead of duplicating it.
-
-Claude Code Plan Mode UI/sidebar plans are drafts. When the user approves or asks to save one, write it to `plans/XX-short-task-name.md`, commit only that plan file with `sync plans`, and push. Do not implement unless explicitly asked.
-
-Every plan file must include:
-1. `## Status`
-   - `unclaimed` or `claimed`
-2. `## Task Tracker`
-   - [ ] Task 1: <one-line description>
-3. A detail section for each task:
-   - Files to create or modify
-   - Specific code changes
-   - Existing code connections
-   - A concrete **Verify:** step (a command to run or behavior to check)
-
-Tasks must be sequential and self-contained. Parallel plans must not touch the same files or APIs unless their dependency is documented.
-
-Before implementing, run `git pull --ff-only`, select the specified plan or highest-numbered `unclaimed` plan, mark it `claimed`, commit only that plan file with `sync plans`, and push.
-
-Implement on branch `plan/XX-short-task-name` matching the plan filename without `.md`. Do not use worktrees unless explicitly asked.
-
-After each task: check off the checkbox, run its Verify step, then continue to the next task without stopping.
-
-When all tasks are complete, delete the plan file, commit only that deletion with `sync plans`, and push.
-
-## Python Projects
-
-These are global defaults. Project-level AGENTS.md instructions override this section.
-
-When working in Python projects that use `uv`, always use `uv run` directly — never prepend `PYTHONPATH=src`. If the project has a `pyproject.toml` with `[tool.setuptools.packages.find]`, install in editable mode via `uv pip install -e .`.
+## Subagents
+- Use subagents selectively to preserve usage efficiency.
+- Good uses: independent research, disjoint implementation slices, larger-task verification.
+- Avoid subagents for small edits or tightly coupled implementation.

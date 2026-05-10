@@ -1,10 +1,15 @@
 ---
 name: ship
-description: Stage all changes, commit with a single-line lowercase message, and push
+description: Simplify, review, verify, commit, and push intended changes
 ---
 
-Stage all changes with git add -A.
-Read the full diff to understand what changed.
-Write a single-line commit message: lowercase, no period, imperative form.
-Format: "add x" or "fix y" — not "Added x" or "Fixes y".
-Commit, then push.
+Use this when the user asks to ship, commit, or push current work.
+
+Steps:
+- Simplify recent changes where a cleaner local shape is obvious.
+- Review `git diff HEAD`.
+- Fix real bugs, style issues, and convention mismatches.
+- Re-run the relevant verification.
+- Stage intended changes only.
+- Commit with a single-line lowercase imperative message, no period.
+- Push.

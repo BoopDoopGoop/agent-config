@@ -1,12 +1,15 @@
 ---
 name: debug
-description: Take an error description, form a hypothesis, loop fix→verify until working
+description: Run a concise reproduce-hypothesize-fix-verify loop until working
 ---
 
-Take a description of the broken behavior or error message from the user.
-Check relevant logs. Run the failing code. Read the output carefully.
-Form a hypothesis before touching any code — state it explicitly.
-Fix the code based on the hypothesis.
-Run the code again and check the output.
-Loop: check logs → fix → verify → repeat until the feature works.
-Report what was found and what was changed when done.
+Use this when the user reports broken behavior or an error.
+
+Loop until working or genuinely blocked:
+- Reproduce the failure, or read the most relevant logs/output when reproduction is not available.
+- State the current hypothesis before editing.
+- Fix the root cause, keeping the change focused.
+- Verify the failure is gone with the relevant command or behavior check.
+- If verification fails, update the hypothesis and repeat.
+
+Report the cause, fix, and verification when done.
