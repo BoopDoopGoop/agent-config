@@ -13,4 +13,4 @@ Steps:
 - Stage intended changes only.
 - Commit with a single-line lowercase imperative message, no period.
 - Push.
-- Run `git fetch` after pushing so local remote-tracking refs reflect the pushed commit.
+- Run `git fetch` as a separate command after pushing so local remote-tracking refs reflect the pushed commit.
