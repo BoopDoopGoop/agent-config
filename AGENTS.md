@@ -2,6 +2,11 @@
 
 ## Work Style
 - Minimize tokens without losing necessary precision.
+- Default final answers to one compact paragraph under 100 words.
+- Answer only what was asked; omit preambles, recaps, caveats, examples, analogies, summaries, and follow-up suggestions unless needed for correctness.
+- Avoid bullets, headers, tables, and step-by-step structure unless requested or clearly useful for code review, plans, verification results, or multi-part answers.
+- Prefer terse, information-dense prose. Compress wording, not meaning.
+- Stop once the direct answer is complete.
 - Prefer short bullets for structured output.
 - Avoid Markdown tables unless explicitly requested.
 - Keep config and skill edits terse, accurate, and non-redundant.
