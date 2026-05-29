@@ -5,7 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 AGENT_CONFIG="${AGENT_CONFIG_DIR:-$SCRIPT_DIR}"
 
-echo "Setting up agent config symlinks..."
+echo "Setting up agent config..."
 
 CUSTOM_SKILLS=(debug handoff implement retro ship)
 
@@ -58,9 +58,4 @@ test "$(realpath "$HOME/.claude/statusline-command.sh")" = "$(realpath "$AGENT_C
 cmp -s "$HOME/.codex/config.toml" "$AGENT_CONFIG/codex/config.toml"
 test "$(realpath "$HOME/.codex/execpolicy/default.rules")" = "$(realpath "$AGENT_CONFIG/codex/execpolicy/default.rules")"
 
-echo ""
-echo "Done. All agents now share $AGENT_CONFIG/AGENTS.md and custom skills from $AGENT_CONFIG/skills/"
-echo ""
-echo "Next steps:"
-echo "  1. Review $AGENT_CONFIG/AGENTS.md and fill in your personal conventions"
-echo "  2. Open a new project and add any project-level AGENTS.md conventions"
+echo "Done."
