@@ -14,4 +14,3 @@ Steps:
 - Delete the plan file after all tasks pass verification.
 
 Do not run git workflow steps or use active tracking.
-Follow the saved plan format from `AGENTS.md`.

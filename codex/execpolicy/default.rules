@@ -23,7 +23,85 @@ prefix_rule(
 )
 
 prefix_rule(
+    pattern = ["git", "push", "--force-with-lease"],
+    decision = "forbidden",
+    justification = "Force pushes are destructive",
+)
+
+prefix_rule(
+    pattern = ["git", "push", "--force-if-includes"],
+    decision = "forbidden",
+    justification = "Force pushes are destructive",
+)
+
+prefix_rule(
+    pattern = ["git", "push", "origin", "--force"],
+    decision = "forbidden",
+    justification = "Force pushes are destructive",
+)
+
+prefix_rule(
+    pattern = ["git", "push", "origin", "-f"],
+    decision = "forbidden",
+    justification = "Force pushes are destructive",
+)
+
+prefix_rule(
+    pattern = ["git", "push", "origin", "--force-with-lease"],
+    decision = "forbidden",
+    justification = "Force pushes are destructive",
+)
+
+prefix_rule(
+    pattern = ["git", "push", "origin", "--force-if-includes"],
+    decision = "forbidden",
+    justification = "Force pushes are destructive",
+)
+
+prefix_rule(
     pattern = ["rm", "-rf"],
+    decision = "forbidden",
+    justification = "Recursive deletion is destructive",
+)
+
+prefix_rule(
+    pattern = ["rm", "-fr"],
+    decision = "forbidden",
+    justification = "Recursive deletion is destructive",
+)
+
+prefix_rule(
+    pattern = ["rm", "-r", "-f"],
+    decision = "forbidden",
+    justification = "Recursive deletion is destructive",
+)
+
+prefix_rule(
+    pattern = ["rm", "-f", "-r"],
+    decision = "forbidden",
+    justification = "Recursive deletion is destructive",
+)
+
+prefix_rule(
+    pattern = ["/bin/rm", "-rf"],
+    decision = "forbidden",
+    justification = "Recursive deletion is destructive",
+)
+
+prefix_rule(
+    pattern = ["/bin/rm", "-fr"],
+    decision = "forbidden",
+    justification = "Recursive deletion is destructive",
+)
+
+prefix_rule(
+    pattern = ["/bin/rm", "-r", "-f"],
+    decision = "forbidden",
+    justification = "Recursive deletion is destructive",
+)
+
+prefix_rule(
+    pattern = ["/bin/rm", "-f", "-r"],
     decision = "forbidden",
     justification = "Recursive deletion is destructive",
 )

@@ -7,12 +7,28 @@ AGENT_CONFIG="${AGENT_CONFIG_DIR:-$SCRIPT_DIR}"
 
 echo "Setting up agent config symlinks..."
 
+CUSTOM_SKILLS=(debug handoff implement retro ship)
+
+install_skill_links() {
+  local dest="$1"
+  if [ -L "$dest" ]; then
+    unlink "$dest"
+  fi
+  mkdir -p "$dest"
+  if [ -L "$dest/skills" ]; then
+    unlink "$dest/skills"
+  fi
+  for skill in "${CUSTOM_SKILLS[@]}"; do
+    ln -sfn "$AGENT_CONFIG/skills/$skill" "$dest/$skill"
+  done
+}
+
 # ── Claude Code ──────────────────────────────────────────
 # CLAUDE.md becomes a pointer to shared AGENTS.md
-# Skills directory is symlinked from shared location
+# Custom skills are linked individually; generated system skills stay agent-owned.
 mkdir -p "$HOME/.claude"
 printf '%s\n' "@$AGENT_CONFIG/AGENTS.md" > "$HOME/.claude/CLAUDE.md"
-ln -sfn "$AGENT_CONFIG/skills" "$HOME/.claude/skills"
+install_skill_links "$HOME/.claude/skills"
 ln -sf "$AGENT_CONFIG/claude-code/settings.json" "$HOME/.claude/settings.json"
 ln -sf "$AGENT_CONFIG/claude-code/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 echo "✓ Claude Code"
@@ -21,7 +37,7 @@ echo "✓ Claude Code"
 # Codex reads ~/.codex/AGENTS.md as global config
 mkdir -p "$HOME/.codex/execpolicy"
 ln -sf "$AGENT_CONFIG/AGENTS.md" "$HOME/.codex/AGENTS.md"
-ln -sfn "$AGENT_CONFIG/skills" "$HOME/.codex/skills"
+install_skill_links "$HOME/.codex/skills"
 if [ -L "$HOME/.codex/config.toml" ]; then
   unlink "$HOME/.codex/config.toml"
 fi
@@ -33,16 +49,18 @@ echo "✓ Codex"
 test -f "$AGENT_CONFIG/AGENTS.md"
 test "$(realpath "$HOME/.codex/AGENTS.md")" = "$(realpath "$AGENT_CONFIG/AGENTS.md")"
 grep -Fx "@$AGENT_CONFIG/AGENTS.md" "$HOME/.claude/CLAUDE.md" >/dev/null
-test "$(realpath "$HOME/.codex/skills")" = "$(realpath "$AGENT_CONFIG/skills")"
-test "$(realpath "$HOME/.claude/skills")" = "$(realpath "$AGENT_CONFIG/skills")"
+for skill in "${CUSTOM_SKILLS[@]}"; do
+  test "$(realpath "$HOME/.codex/skills/$skill")" = "$(realpath "$AGENT_CONFIG/skills/$skill")"
+  test "$(realpath "$HOME/.claude/skills/$skill")" = "$(realpath "$AGENT_CONFIG/skills/$skill")"
+done
 test "$(realpath "$HOME/.claude/settings.json")" = "$(realpath "$AGENT_CONFIG/claude-code/settings.json")"
 test "$(realpath "$HOME/.claude/statusline-command.sh")" = "$(realpath "$AGENT_CONFIG/claude-code/statusline-command.sh")"
 cmp -s "$HOME/.codex/config.toml" "$AGENT_CONFIG/codex/config.toml"
 test "$(realpath "$HOME/.codex/execpolicy/default.rules")" = "$(realpath "$AGENT_CONFIG/codex/execpolicy/default.rules")"
 
 echo ""
-echo "Done. All agents now share $AGENT_CONFIG/AGENTS.md and $AGENT_CONFIG/skills/"
+echo "Done. All agents now share $AGENT_CONFIG/AGENTS.md and custom skills from $AGENT_CONFIG/skills/"
 echo ""
 echo "Next steps:"
 echo "  1. Review $AGENT_CONFIG/AGENTS.md and fill in your personal conventions"
-echo "  2. Open a new project and run the 'bootstrap' skill to generate a project-level AGENTS.md"
+echo "  2. Open a new project and add any project-level AGENTS.md conventions"

@@ -3,12 +3,16 @@
 
 input=$(cat)
 
-cwd=$(echo "$input"      | jq -r '.workspace.current_dir // .cwd // empty')
-model=$(echo "$input"    | jq -r '.model.display_name // empty')
-effort=$(echo "$input"   | jq -r '.effort.level // empty')
-ctx_pct=$(echo "$input"  | jq -r '.context_window.used_percentage // empty')
-fh_used=$(echo "$input"  | jq -r '.rate_limits.five_hour.used_percentage // empty')
-wd_used=$(echo "$input"  | jq -r '.rate_limits.seven_day.used_percentage // empty')
+IFS=$'\t' read -r cwd model effort ctx_pct fh_used wd_used < <(
+  jq -r '[
+    .workspace.current_dir // .cwd // "",
+    .model.display_name // "",
+    .effort.level // "",
+    .context_window.used_percentage // "",
+    .rate_limits.five_hour.used_percentage // "",
+    .rate_limits.seven_day.used_percentage // ""
+  ] | @tsv' <<<"$input"
+)
 
 # Project name: basename of cwd
 project=$(basename "${cwd:-$(pwd)}")
