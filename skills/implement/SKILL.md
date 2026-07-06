@@ -1,9 +1,9 @@
 ---
 name: implement
-description: Execute a handed-off plan from plans/
+description: Execute an explicit saved plan from plans/
 ---
 
-Use this when the user asks to implement a handed-off plan.
+Use this only when the user asks to implement a saved plan file. Do not use for ordinary tasks or informal plans.
 
 Steps:
 - Use the named plan, or the highest-numbered plan in `plans/` if none is named.

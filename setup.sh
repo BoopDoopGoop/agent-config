@@ -7,7 +7,7 @@ AGENT_CONFIG="${AGENT_CONFIG_DIR:-$SCRIPT_DIR}"
 
 echo "Setting up agent config..."
 
-CUSTOM_SKILLS=(debug handoff implement retro ship)
+CUSTOM_SKILLS=(bootstrap debug handoff implement retro ship)
 
 install_skill_links() {
   local dest="$1"

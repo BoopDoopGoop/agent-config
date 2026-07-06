@@ -1,9 +1,9 @@
 ---
 name: handoff
-description: Save an approved plan to plans/ for implementation
+description: Save an explicitly approved implementation plan to plans/
 ---
 
-Use this only when the user approves a plan or asks for handoff.
+Use this only when the user asks to save or hand off an approved plan for later implementation. Do not use for ordinary in-chat planning.
 
 Steps:
 - Check `plans/` for a related existing plan first; update it instead of duplicating it.
@@ -15,5 +15,3 @@ Steps:
   - One section per task with `Files`, `Changes`, `Connections`, `Depends`, and `Verify`.
   - Add `## Final Check` only for multi-task, cross-cutting, UI, integration, or refactor work.
 - Do not commit, push, sync, branch, pull, mark status, or archive.
-
-Keep the skill folder name, front matter `name`, description, and `AGENTS.md` trigger aligned.
