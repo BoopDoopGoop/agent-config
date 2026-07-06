@@ -18,6 +18,6 @@
 - Dependencies: TODO package manager and approval/review expectations.
 - Conventions: TODO style, naming, architecture, generated files.
 - Done: TODO required checks and review criteria before completion.
-- Avoid touching without explicit instruction: `TODO`
+- Protected paths/directories: `TODO` (touch with explicit instruction).
 
-Keep this file repo-specific; do not duplicate global agent rules.
+Keep this file repo-specific and command-focused; rely on global rules for baseline behavior.

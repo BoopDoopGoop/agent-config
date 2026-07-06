@@ -17,6 +17,6 @@ Project rules:
 - Dependencies: TODO package manager and approval/review expectations.
 - Coding conventions: TODO style, naming, architecture, generated files.
 - Definition of done: TODO required checks and review criteria.
-- Avoid touching without explicit instruction: `TODO`
+- Protected paths/directories: `TODO` (touch with explicit instruction).
 
 Keep only high-leverage repo facts and commands here.

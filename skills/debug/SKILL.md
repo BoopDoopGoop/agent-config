@@ -6,8 +6,8 @@ description: Run a concise reproduce-hypothesize-fix-verify loop until working
 Use this when the user reports broken behavior or an error.
 
 Loop until working or genuinely blocked:
-- Reproduce the failure, or read the most relevant logs/output when reproduction is not available.
-- Form a hypothesis before editing; report it only when useful or before a risky change.
+- Reproduce the failure, or read the most relevant logs/output when reproduction is impractical.
+- Form a hypothesis before editing; report it before risky changes or when it clarifies the next step.
 - Fix the root cause, keeping the change focused.
 - Verify the failure is gone with the relevant command or behavior check.
 - If verification fails, update the hypothesis and repeat.

@@ -3,7 +3,7 @@ name: implement
 description: Execute an explicit saved plan from plans/
 ---
 
-Use this only when the user asks to implement a saved plan file. Do not use for ordinary tasks or informal plans.
+Use this for explicit saved-plan implementation requests. For ordinary tasks or informal plans, work directly in chat.
 
 Steps:
 - Use the named plan, or the highest-numbered plan in `plans/` if none is named.
@@ -13,4 +13,4 @@ Steps:
 - Run `Final Check` when present.
 - Delete the plan file after all tasks pass verification.
 
-Do not run git workflow steps or use active tracking.
+Keep this focused on plan execution; leave git workflow steps and active tracking to explicit ship or commit requests.

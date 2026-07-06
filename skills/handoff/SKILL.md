@@ -3,7 +3,7 @@ name: handoff
 description: Save an explicitly approved implementation plan to plans/
 ---
 
-Use this only when the user asks to save or hand off an approved plan for later implementation. Do not use for ordinary in-chat planning.
+Use this for explicit saved-plan handoff requests. For ordinary in-chat planning, make the plan in chat.
 
 Steps:
 - Check `plans/` for a related existing plan first; update it instead of duplicating it.
@@ -13,5 +13,5 @@ Steps:
   - `## Tasks`: one unified top checklist.
   - Task IDs: `T1`, `T2`, etc.; note dependencies inline.
   - One section per task with `Files`, `Changes`, `Connections`, `Depends`, and `Verify`.
-  - Add `## Final Check` only for multi-task, cross-cutting, UI, integration, or refactor work.
-- Do not commit, push, sync, branch, pull, mark status, or archive.
+  - Add `## Final Check` for multi-task, cross-cutting, UI, integration, or refactor work.
+- Stop after saving the plan; leave commit, push, sync, branch, pull, status, and archive actions to explicit requests.
