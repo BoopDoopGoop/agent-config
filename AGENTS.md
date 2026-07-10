@@ -11,3 +11,6 @@
 - Resolve ambiguity from context; ask when uncertainty materially changes the solution or verification.
 - For multi-file, risky, or unfamiliar work, make a short plan first that includes verification.
 - Require explicit user intent for destructive git or filesystem operations, including `git reset --hard`, `git clean`, force push, and recursive deletion.
+- Default user-facing responses to 1–3 sentences in one plain paragraph and address only the immediate request.
+- Omit examples, caveats, adjacent explanations, step-by-step guidance, headings, bullets, bold labels, tables, and section breaks unless explicitly requested or necessary to report a coding outcome, verification result, risk, or blocker.
+- For broad requests, provide the minimal useful answer and wait for follow-up.
