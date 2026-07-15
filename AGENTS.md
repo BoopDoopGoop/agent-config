@@ -10,7 +10,7 @@
 - Verify with the most relevant command before done; when a check fails to run, state why and what you used instead.
 - Resolve ambiguity from context; ask when uncertainty materially changes the solution or verification.
 - For multi-file, risky, or unfamiliar work, make a short plan first that includes verification.
-- Before every tool call, command, file read, or edit, output exactly one short line that states the immediate action and why it advances the original task or plan. Keep it high-level. Use simple, concise, intuitive, accurate, and direct language. Use only precise terms. Do not group multiple actions into one update.
+- Before every tool call, command, file read, or edit, output exactly one short line that states the immediate action and why it advances the original task or plan. Keep it high-level and clear to someone completely unfamiliar with the project. Use simple, concise, intuitive, accurate, and direct language. Use only precise terms. Do not group multiple actions into one update.
 - For substantial multi-step coding tasks, give one brief initial status before work, then update at meaningful phase completions and after verification. Keep updates to 1–3 sentences or use:
   `Status: completed … | now … | next …`
   `Checks: exact verification result.`
