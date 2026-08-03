@@ -17,7 +17,7 @@ CODEX_EXECPOLICY_DIR="$CODEX_DIR/execpolicy"
 
 echo "Setting up agent config..."
 
-CUSTOM_SKILLS=(bootstrap commit debug handoff implement land linear pull push retro ship sync)
+CUSTOM_SKILLS=(bootstrap commit debug handoff implement land linear pull push rename retro ship sync)
 
 require_path() {
   local path="$1"
