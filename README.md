@@ -15,7 +15,7 @@ It includes only `opencode.jsonc`, Oh My OpenCode Slim settings, and TUI
 settings. OpenCode downloads third-party plugins listed in `opencode.jsonc`
 automatically at startup, including `@boopdoopgoop/opencode-btw`.
 
-## BTW package development
+## BTW Package Development
 
 The public plugin lives in `packages/opencode-btw`:
 
